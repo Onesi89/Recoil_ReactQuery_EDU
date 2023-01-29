@@ -1,25 +1,38 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { RecoilRoot } from 'recoil';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
+import TodoList from './component/todoList/TodoList';
+import ReactQueryExam1 from './component/reactQueryExam/reactQueryExam1';
+import ReactQueryExam2 from './component/reactQueryExam/ReactQueryExam2';
+import ReactQueryExam3 from './component/reactQueryExam/ReactQueryExam3';
+import ReactQueryExam4 from './component/reactQueryExam/ReactQueryExam4';
 
+declare module 'react-query/types/react/QueryClientProvider' {
+  interface QueryClientProviderProps {
+    children?: React.ReactNode;
+  }
+}
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            {/* <TodoList /> */}
+            <Route path="/" element={<ReactQueryExam2 />}></Route>
+            <Route path="/1" element={<ReactQueryExam3 />}></Route>
+            <Route path="/2/:id" element={<ReactQueryExam4 />}></Route>
+          </Routes>
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 }
 
