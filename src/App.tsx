@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -10,6 +10,9 @@ import ReactQueryExam1 from './component/reactQueryExam/reactQueryExam1';
 import ReactQueryExam2 from './component/reactQueryExam/ReactQueryExam2';
 import ReactQueryExam3 from './component/reactQueryExam/ReactQueryExam3';
 import ReactQueryExam4 from './component/reactQueryExam/ReactQueryExam4';
+import ReactQueryLayout from './component/reactQueryExam/ReactQueryLayout';
+import ModalProvider from './common/modal/ModalProvider';
+import ModalRecoil from './common/modal/ModalRecoil';
 
 declare module 'react-query/types/react/QueryClientProvider' {
   interface QueryClientProviderProps {
@@ -21,17 +24,23 @@ function App() {
 
   return (
     <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            {/* <TodoList /> */}
-            <Route path="/" element={<ReactQueryExam2 />}></Route>
-            <Route path="/1" element={<ReactQueryExam3 />}></Route>
-            <Route path="/2/:id" element={<ReactQueryExam4 />}></Route>
-          </Routes>
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />
-      </QueryClientProvider>
+      {/* useUseContext  */}
+      {/* <ModalProvider> */}
+      {/*  useUseRecoil  */}
+      <ModalRecoil>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Routes>
+              {/* <TodoList /> */}
+              {/* <Route path="/" element={<ReactQueryExam2 />}></Route>
+              <Route path="/1" element={<ReactQueryExam3 />}></Route> */}
+              <Route path="/:id" element={<ReactQueryLayout />}></Route>
+            </Routes>
+          </BrowserRouter>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />
+        </QueryClientProvider>
+      </ModalRecoil>
+      {/* </ModalProvider> */}
     </RecoilRoot>
   );
 }
