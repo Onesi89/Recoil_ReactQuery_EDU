@@ -3,6 +3,9 @@ import ModalRecoil from '../common/modal/ModalRecoil';
 import { CustomError } from '../component/reactQueryExam/ReactQueryExam4';
 import ServerErrorPage from './ServerErrorPage';
 
+/**
+ * 서버 점검, 유지보수 등 사용되는 Error boundary
+ */
 interface Props {
   children?: ReactNode;
   onReset?: () => void;

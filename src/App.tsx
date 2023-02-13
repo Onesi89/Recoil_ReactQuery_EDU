@@ -13,6 +13,9 @@ import ReactQueryExam4 from './component/reactQueryExam/ReactQueryExam4';
 import ReactQueryLayout from './component/reactQueryExam/ReactQueryLayout';
 import ModalProvider from './common/modal/ModalProvider';
 import ModalRecoil from './common/modal/ModalRecoil';
+import EduUseMutation from './component/useMutationExam/EduUseMutation';
+import EduUseMutationLayout from './component/useMutationExam/EduUseMutationLayout';
+
 
 declare module 'react-query/types/react/QueryClientProvider' {
   interface QueryClientProviderProps {
@@ -35,6 +38,7 @@ function App() {
               {/* <Route path="/" element={<ReactQueryExam2 />}></Route>
               <Route path="/1" element={<ReactQueryExam3 />}></Route> */}
               <Route path="/:id" element={<ReactQueryLayout />}></Route>
+              <Route path="/" element={<EduUseMutationLayout />}></Route>
             </Routes>
           </BrowserRouter>
           <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />

@@ -13,6 +13,9 @@ interface State {
   error?: Error;
 }
 
+/**
+ * API 통신 오류 등에 사용되는 Error boundary 
+ */
 class APIErrorBoundary extends Component<Props, State> {
   public state: State = {
     shouldHandleError: false,
